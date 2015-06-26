@@ -10,5 +10,19 @@
   "scripts": {
     "start": "beefy src/index.coffee:js/index.js --live -- --transform coffeeify --extension=\".coffee\" &",
     "stop": "fuser --kill 9966/tcp"
-  }
+  },
+  "name": "shoryu-gui",
+  "version": "0.0.0",
+  "main": "js/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessaustin/shoryu-gui.git"
+  },
+  "author": "Jess Austin <jess.austin@gmail.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jessaustin/shoryu-gui/issues"
+  },
+  "homepage": "https://github.com/jessaustin/shoryu-gui#readme",
+  "description": ""
 }
