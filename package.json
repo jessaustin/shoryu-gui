@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "cyclejs": "^0.24.0"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.5",
+    "coffeeify": "^1.1.0",
+    "watchify": "^3.2.3"
+  },
+  "scripts": {
+    "start": "beefy src/index.coffee:js/index.js --live -- --transform coffeeify --extension=\".coffee\" &",
+    "stop": "fuser --kill 9966/tcp"
+  }
+}
