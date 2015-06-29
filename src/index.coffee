@@ -1,4 +1,5 @@
-{h, makeDOMDriver, run} = require 'cyclejs'
+{run} = require '@cycle/core'
+{h, makeDOMDriver} = require '@cycle/web'
 
 run (drivers) ->
   DOM:
@@ -7,9 +8,9 @@ run (drivers) ->
       .startWith ''
       .map (name) ->
         h 'div', [
-          h 'label', 'Name:'
+          h 'label', 'Name: '
           h 'input.myinput', attributes: type: 'text'
           h 'hr'
-          h 'h1', 'Yo ' + name
+          h 'h1', 'Yo ' + name + '!!!'
         ]
 , DOM: makeDOMDriver '#container'

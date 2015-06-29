@@ -1,15 +1,14 @@
 {
   "dependencies": {
-    "cyclejs": "^0.24.0"
+    "@cycle/core": "^1.0.0-rc1",
+    "@cycle/web": "^1.0.0"
   },
   "devDependencies": {
-    "beefy": "^2.1.5",
-    "coffeeify": "^1.1.0",
-    "watchify": "^3.2.3"
+    "budo": ">=4.1",
+    "coffeeify": ">=1.1"
   },
   "scripts": {
-    "start": "beefy src/index.coffee:js/index.js --live -- --transform coffeeify --extension=\".coffee\" &",
-    "stop": "fuser --kill 9966/tcp"
+    "start": "budo src/index.coffee:js/index.js --live -- --transform coffeeify --extension=\".coffee\""
   },
   "name": "shoryu-gui",
   "version": "0.0.0",
@@ -23,6 +22,5 @@
   "bugs": {
     "url": "https://github.com/jessaustin/shoryu-gui/issues"
   },
-  "homepage": "https://github.com/jessaustin/shoryu-gui#readme",
-  "description": ""
+  "homepage": "https://github.com/jessaustin/shoryu-gui"
 }
