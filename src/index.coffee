@@ -1,42 +1,47 @@
 {run, Rx} = require '@cycle/core'
 {h, makeDOMDriver} = require '@cycle/web'
 
-name = (given, family, eastern) ->
-#  console.log [given, family, eastern]
-  g = h 'div', key: 0, [
-    h 'label', 'Given Name: '
-    h 'input.given', attributes:
-      type: 'text'
-      placeholder: 'given name'
-      value: given
+name = (given, family, eastern, label='0') ->
+  g = h '.form-group', key: 0, [
+    h 'label.control-label.col-xs-2', attributes: for: "given-#{label}", 'Given Name:'
+    h '.col-xs-3', [
+      h "input#given-#{label}.form-control", attributes:
+        type: 'text'
+        placeholder: 'given name'
+        value: given
+    ]
   ]
-  f = h 'div', key: 1, [
-    h 'label', 'Family Name: '
-    h 'input.family', attributes:
-      type: 'text'
-      placeholder: 'family name'
-      value: family
+  f = h '.form-group', key: 1, [
+    h 'label.control-label.col-xs-2', attributes: for: "family-#{label}", 'Family Name:'
+    h '.col-xs-3', [
+      h "input#family-#{label}.form-control", attributes:
+        type: 'text'
+        placeholder: 'family name'
+        value: family
+    ]
   ]
-  e = h 'div', [
-    h 'label', 'eastern order? '
-    h 'input.eastern', attributes:
-      type: 'checkbox'
-      value: eastern
+  e = h '.form-group', [
+    h 'label.checkbox-inline.col-xs-offset-2', [
+      h "input#eastern-#{label}", attributes:
+        type: 'checkbox'
+        value: eastern
+      'eastern name order?'
+    ]
   ]
   unless eastern
-    h 'div', [g, f, e]
+    h 'form.form-horizontal', [g, f, e]
   else
-    h 'div', [f, g, e]
+    h 'form.form-horizontal', [f, g, e]
 
 run (drivers) ->
-  given$ = drivers.DOM.get '.given', 'input'
+  given$ = drivers.DOM.get '#given-0', 'input'
     .map (ev) -> ev.target.value
     .startWith ''
-  family$ = drivers.DOM.get '.family', 'input'
+  family$ = drivers.DOM.get '#family-0', 'input'
     .map (ev) -> ev.target.value
     .startWith ''
-  eastern$ = drivers.DOM.get '.eastern', 'change'
+  eastern$ = drivers.DOM.get '#eastern-0', 'change'
     .map (ev) -> ev.target.checked
     .startWith no
   DOM: Rx.Observable.combineLatest given$, family$, eastern$, name
-, DOM: makeDOMDriver '#container'
+, DOM: makeDOMDriver '.container-fluid'
